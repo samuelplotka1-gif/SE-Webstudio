@@ -2,6 +2,7 @@ import express from "express";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { checkSite } from "./fetchSite.js";
+import { isValidEmail, saveLead } from "./leads.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -22,18 +23,26 @@ app.use("/api/check", (req, res, next) => {
   next();
 });
 
-app.post("/api/check", async (req, res) => {
-  try {
-    const report = await checkSite(req.body?.url);
-    res.json(report);
-  } catch (err) {
-    res.status(400).json({ error: err.message });
-  }
-});
+// E-Mail-Pflicht lässt sich für interne Nutzung mit REQUIRE_EMAIL=0 abschalten.
+const requireEmail = process.env.REQUIRE_EMAIL !== "0";
 
-app.get("/api/check", async (req, res) => {
+app.post("/api/check", async (req, res) => {
+  const { url, email, name, consent } = req.body || {};
+
+  if (requireEmail || email) {
+    if (!isValidEmail(email)) return res.status(400).json({ error: "Bitte eine gültige E-Mail-Adresse angeben." });
+    if (consent !== true) return res.status(400).json({ error: "Bitte der Kontaktaufnahme zustimmen." });
+  }
+
   try {
-    const report = await checkSite(req.query.url);
+    const report = await checkSite(url);
+    if (email) {
+      try {
+        await saveLead({ email, name, host: report.host, score: report.score });
+      } catch (err) {
+        console.error(`Kontakt konnte nicht gespeichert werden: ${err.message}`);
+      }
+    }
     res.json(report);
   } catch (err) {
     res.status(400).json({ error: err.message });

@@ -18,8 +18,12 @@
     main { max-width: 760px; margin: 0 auto; padding: 48px 16px 80px; }
     h1 { font-size: 2rem; margin: 0 0 8px; }
     .lead { color: var(--muted); margin: 0 0 28px; }
-    form { display: flex; gap: 8px; flex-wrap: wrap; }
-    input[type=text] { flex: 1 1 260px; padding: 14px 16px; font-size: 1.05rem; border: 1px solid var(--line); border-radius: 10px; background: var(--card); color: var(--text); }
+    form { display: flex; flex-direction: column; gap: 10px; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .consent { display: flex; gap: 10px; align-items: flex-start; font-size: .9rem; color: var(--muted); }
+    .consent input { margin-top: 4px; }
+    .consent a { color: var(--accent); }
+    input[type=text], input[type=email] { flex: 1 1 260px; padding: 14px 16px; font-size: 1.05rem; border: 1px solid var(--line); border-radius: 10px; background: var(--card); color: var(--text); }
     button { padding: 14px 22px; font-size: 1.05rem; border: 0; border-radius: 10px; background: var(--accent); color: #fff; cursor: pointer; font-weight: 600; }
     button:disabled { opacity: .6; cursor: wait; }
     .status { margin-top: 16px; color: var(--muted); }
@@ -48,8 +52,20 @@
   <p class="lead">Geben Sie Ihre Domain ein. Wir prüfen in wenigen Sekunden Geschwindigkeit, Sicherheit, Google-Tauglichkeit und Pflichtangaben.</p>
 
   <form id="form">
-    <input id="url" type="text" placeholder="z. B. meine-firma.de" autocomplete="url" required>
-    <button id="btn" type="submit">Jetzt prüfen</button>
+    <div class="row">
+      <input id="url" type="text" placeholder="Ihre Domain, z. B. meine-firma.de" autocomplete="url" required>
+    </div>
+    <div class="row">
+      <input id="name" type="text" placeholder="Ihr Name (optional)" autocomplete="name">
+      <input id="email" type="email" placeholder="Ihre E-Mail-Adresse" autocomplete="email" required>
+    </div>
+    <label class="consent">
+      <input id="consent" type="checkbox" required>
+      <span>Ich bin einverstanden, dass SE-Webstudio mich per E-Mail zum Ergebnis meines Website-Checks kontaktiert. Die Einwilligung kann ich jederzeit widerrufen. <a href="/datenschutz.html">Datenschutzhinweise</a></span>
+    </label>
+    <div class="row">
+      <button id="btn" type="submit">Jetzt kostenlos prüfen</button>
+    </div>
   </form>
   <div id="status" class="status" hidden></div>
   <div id="error" class="error" hidden></div>
@@ -84,13 +100,16 @@
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const url = document.getElementById("url").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const name = document.getElementById("name").value.trim();
+    const consent = document.getElementById("consent").checked;
     btn.disabled = true;
     result.hidden = true;
     errorEl.hidden = true;
     statusEl.hidden = false;
     statusEl.textContent = "Seite wird geladen und geprüft …";
     try {
-      const res = await fetch("/api/check", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ url }) });
+      const res = await fetch("/api/check", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ url, email, name, consent }) });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Unbekannter Fehler");
       render(data);
