@@ -44,14 +44,43 @@ Jede Prüfung hat ein Gewicht. Bestanden gibt volle Punkte, ein Hinweis die
 Hälfte, ein Fehler nichts. Die Prüflogik liegt in `src/analyze.js` und ist
 ohne Netzwerk testbar. Der Abruf der Seite liegt in `src/fetchSite.js`.
 
+## Kontakte (Leads)
+
+Vor dem Ergebnis müssen Besucher ihre E-Mail-Adresse eingeben und der
+Kontaktaufnahme zustimmen. Jeder Check wird mit Zeitpunkt, E-Mail, optionalem
+Namen, Domain und Punktzahl in `data/leads.jsonl` gespeichert. Die Datei ist
+nicht im Git.
+
+```bash
+npm run leads        # alle Kontakte anzeigen, neueste zuerst
+```
+
+Optional lässt sich jeder neue Kontakt zusätzlich an einen Webhook schicken,
+etwa Zapier, Make oder ein CRM:
+
+```bash
+LEAD_WEBHOOK_URL=https://hooks.zapier.com/... npm start
+```
+
+Weitere Einstellungen:
+
+| Variable          | Bedeutung                                                    |
+|-------------------|--------------------------------------------------------------|
+| `PORT`            | Port des Servers, Standard 3000                              |
+| `LEADS_FILE`      | Pfad der Kontaktdatei, Standard `data/leads.jsonl`           |
+| `LEAD_WEBHOOK_URL`| Webhook, an den jeder neue Kontakt als JSON geschickt wird   |
+| `REQUIRE_EMAIL=0` | E-Mail-Pflicht abschalten, z. B. für interne Nutzung          |
+
+Die Seite `public/datenschutz.html` ist ein Platzhalter und muss vor dem
+Live-Gang durch die eigene Datenschutzerklärung ersetzt werden.
+
 ## Schnittstelle
 
-`POST /api/check` mit `{ "url": "beispiel-firma.de" }` oder
-`GET /api/check?url=beispiel-firma.de`. Antwort ist JSON mit `score`,
-`summary` und `checks`. Maximal 10 Anfragen pro Minute und IP.
+`POST /api/check` mit `{ "url": "beispiel-firma.de", "email": "max@firma.de",
+"name": "Max", "consent": true }`. Antwort ist JSON mit `score`, `summary` und
+`checks`. Maximal 10 Anfragen pro Minute und IP.
 
 ## Nächste Schritte
 
-- E-Mail-Feld vor dem Ergebnis, damit aus dem Check ein Kontakt wird
 - Bericht als PDF mit Agentur-Logo zum Verschicken
 - In die Agentur-Website einbauen
