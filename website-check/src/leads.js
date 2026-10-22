@@ -3,6 +3,11 @@ import path from "node:path";
 
 const DEFAULT_FILE = path.join(process.cwd(), "data", "leads.jsonl");
 
+/** Steuerzeichen entfernen: Sie könnten im Terminal oder in Logs Unsinn anrichten. */
+function cleanName(value) {
+  return String(value).replace(/[\u0000-\u001f\u007f-\u009f]/g, "").trim().slice(0, 120);
+}
+
 /** Einfache, großzügige E-Mail-Prüfung: etwas@etwas.tld */
 export function isValidEmail(value) {
   const s = String(value || "").trim();
@@ -24,11 +29,12 @@ export async function saveLead(lead, options = {}) {
     host: lead.host,
     score: lead.score,
     consent: true,
-    ...(lead.name ? { name: String(lead.name).trim().slice(0, 120) } : {}),
+    ...(lead.name ? { name: cleanName(lead.name) } : {}),
   };
 
-  await fs.mkdir(path.dirname(file), { recursive: true });
-  await fs.appendFile(file, JSON.stringify(record) + "\n", "utf8");
+  await fs.mkdir(path.dirname(file), { recursive: true, mode: 0o700 });
+  // Nur der Betreiber darf die Datei lesen, sie enthält personenbezogene Daten.
+  await fs.appendFile(file, JSON.stringify(record) + "\n", { encoding: "utf8", mode: 0o600 });
 
   if (webhook) {
     try {

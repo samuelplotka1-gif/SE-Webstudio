@@ -70,6 +70,8 @@ Weitere Einstellungen:
 | `LEADS_FILE`      | Pfad der Kontaktdatei, Standard `data/leads.jsonl`           |
 | `LEAD_WEBHOOK_URL`| Webhook, an den jeder neue Kontakt als JSON geschickt wird   |
 | `REQUIRE_EMAIL=0` | E-Mail-Pflicht abschalten, z. B. für interne Nutzung          |
+| `TRUST_PROXY=1`   | Nur hinter einem Reverse-Proxy setzen, sonst ist die Drossel umgehbar |
+| `ALLOW_PRIVATE=1` | Nur für lokale Tests: hebt Host- und Port-Sperre auf. Nie im Betrieb |
 
 Die Seite `public/datenschutz.html` ist ein Platzhalter und muss vor dem
 Live-Gang durch die eigene Datenschutzerklärung ersetzt werden.
@@ -79,6 +81,14 @@ Live-Gang durch die eigene Datenschutzerklärung ersetzt werden.
 `POST /api/check` mit `{ "url": "beispiel-firma.de", "email": "max@firma.de",
 "name": "Max", "consent": true }`. Antwort ist JSON mit `score`, `summary` und
 `checks`. Maximal 10 Anfragen pro Minute und IP.
+
+## Sicherheit
+
+Das Tool ruft fremde Adressen im Auftrag von Besuchern ab und ist damit ein
+klassischer Kandidat für SSRF. Es prüft deshalb DNS-Auflösung, jede
+Weiterleitung und den Port, liest höchstens 3 MB, setzt Sicherheits-Header
+und gibt keine internen Fehler nach außen. Details, Hintergründe und eine
+Checkliste für den Betrieb stehen in [SICHERHEIT.md](SICHERHEIT.md).
 
 ## Nächste Schritte
 
