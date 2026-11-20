@@ -1,0 +1,64 @@
+import Link from "next/link";
+import { company, nav } from "@/content/site";
+
+export function SiteFooter() {
+  const year = new Date().getFullYear();
+  return (
+    <footer className="site-footer">
+      <div className="wrap">
+        <p className="footer-big" aria-hidden="true">
+          S<span>&amp;</span>E Webstudio
+        </p>
+        <div className="footer-grid">
+          <div className="footer-col">
+            <h2>Kontakt</h2>
+            <address>
+              {company.legalName}
+              <br />
+              {company.street}
+              <br />
+              {company.postalCode} {company.city}
+              <br />
+              <a href={`mailto:${company.email}`}>{company.email}</a>
+              <br />
+              {company.phone}
+            </address>
+          </div>
+          <div className="footer-col">
+            <h2>Leistungen</h2>
+            <ul>
+              {nav.map((n) => (
+                <li key={n.href}>
+                  <Link href={n.href}>{n.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="footer-col">
+            <h2>Nächster Schritt</h2>
+            <ul>
+              <li>
+                <Link href="/demo">Kostenlose Demo anfordern</Link>
+              </li>
+              <li>
+                <Link href="/termin">Gespräch buchen</Link>
+              </li>
+              <li>
+                <Link href="/impressum">Impressum</Link>
+              </li>
+              <li>
+                <Link href="/datenschutz">Datenschutz</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <span>
+            © {year} {company.name}
+          </span>
+          <span>Gebaut ohne Baukasten. Schriften lokal, keine Tracker.</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
