@@ -18,7 +18,7 @@ export const env = {
     user: optional("SMTP_USER"),
     pass: optional("SMTP_PASS"),
   },
-  mailFrom: optional("MAIL_FROM") ?? "S&E Webstudio <hallo@se-webstudio.de>",
+  mailFrom: optional("MAIL_FROM") ?? "S&E Webstudio <samuel.begaj@se-webstudio.de>",
   mailReplyTo: optional("MAIL_REPLY_TO"),
   notifyEmail: optional("NOTIFY_EMAIL"),
   crmWebhookUrl: optional("CRM_WEBHOOK_URL"),

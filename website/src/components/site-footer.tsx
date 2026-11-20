@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { company, nav } from "@/content/site";
+import { company, nav, phoneHref } from "@/content/site";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -20,7 +20,7 @@ export function SiteFooter() {
               <br />
               <a href={`mailto:${company.email}`}>{company.email}</a>
               <br />
-              {company.phone}
+              <a href={phoneHref}>{company.phone}</a>
             </address>
           </div>
           <div className="footer-col">

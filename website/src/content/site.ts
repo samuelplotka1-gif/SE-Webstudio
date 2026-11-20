@@ -1,25 +1,31 @@
 /**
- * Zentrale Firmendaten. Alles in [eckigen Klammern] ist ein Platzhalter
- * und wird vor dem Livegang ersetzt (Impressum, Datenschutz, Footer, E-Mails).
+ * Zentrale Firmendaten (Impressum, Datenschutz, Footer, E-Mails).
  */
 export const company = {
   name: "S&E Webstudio",
-  legalName: "[Rechtlicher Firmenname, z. B. S&E Webstudio – Inhaber Vorname Nachname]",
-  owners: "[Vorname Nachname, Vorname Nachname]",
-  street: "[Straße Hausnummer]",
-  postalCode: "[PLZ]",
-  city: "[Ort]",
-  email: "[hallo@se-webstudio.de]",
-  phone: "[+49 000 0000000]",
-  vatId: "[USt-IdNr. oder Steuernummer]",
-  /** Kleinunternehmerregelung nach § 19 UStG (wie im CRM eingestellt) */
-  smallBusiness: true,
+  legalName: "S&E Webstudio – Inhaber Samuel Begaj",
+  owners: "Samuel Begaj",
+  street: "Durmersheimerstraße 45",
+  postalCode: "76185",
+  city: "Karlsruhe-Grünwinkel",
+  email: "samuel.begaj@se-webstudio.de",
+  phone: "+49 152 16479138",
+  /** USt-IdNr. nach § 27a UStG – wird nachgetragen. Leer = Abschnitt im Impressum ausgeblendet. */
+  vatId: "",
+  /**
+   * Kleinunternehmerregelung nach § 19 UStG.
+   * false = Regelbesteuerung (auf die Kleinunternehmerregelung wurde verzichtet).
+   */
+  smallBusiness: false,
   domain: "se-webstudio.de",
 };
 
+/** Telefonnummer für tel:-Links (ohne Leerzeichen) */
+export const phoneHref = `tel:${company.phone.replace(/[^\d+]/g, "")}`;
+
 export const priceNote = company.smallBusiness
   ? "Alle Preise sind Endpreise. Gemäß § 19 UStG wird keine Umsatzsteuer berechnet."
-  : "Alle Preise zzgl. gesetzlicher Umsatzsteuer.";
+  : "Alle Preise zzgl. 19 % Umsatzsteuer.";
 
 /** Branchen für das Demo-Formular. Die CRM-Erweiterung wählt danach die Demo-Vorlage. */
 export const industries = [

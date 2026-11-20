@@ -8,7 +8,7 @@ Technik wie im CRM: Next.js 16, React 19, TypeScript, zod. Kein CSS-Framework, k
 
 | Was | Datei |
 |---|---|
-| Firmendaten (Platzhalter in `[…]`) | `src/content/site.ts` |
+| Firmendaten, Umsatzsteuer-Regelung (`smallBusiness`) | `src/content/site.ts` |
 | Leistungen, Pakete, „ab“-Preise, FAQ | `src/content/services.ts` |
 | Branchenliste im Formular | `src/content/site.ts` → `industries` |
 | Design (Farben, Schriften, alle Stile) | `src/app/globals.css` |
@@ -73,7 +73,8 @@ npm run build     # erzeugt .next/standalone für den Betrieb
 
 ## Vor dem Livegang
 
-- [ ] Firmendaten in `src/content/site.ts` eintragen (alles in `[…]`)
+- [x] Firmendaten in `src/content/site.ts` eingetragen
+- [ ] USt-IdNr. in `src/content/site.ts` → `vatId` nachtragen (erscheint dann automatisch im Impressum)
 - [ ] Preise in `src/content/services.ts` prüfen, Abo-Laufzeit in der FAQ „Hosting & Betreuung“ eintragen
 - [ ] Datenschutzerklärung vervollständigen und rechtlich prüfen lassen
 - [ ] `.env` für Produktion: `SITE_URL`, `APP_SECRET`, SMTP, CRM-Webhook, Calendly, `CRON_SECRET`
