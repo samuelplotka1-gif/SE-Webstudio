@@ -88,7 +88,7 @@ export default function Home() {
             </li>
           </ol>
           <p className="promise">
-            <span className="mono" style={{ color: "var(--signal)" }}>
+            <span className="mono" style={{ color: "var(--signal-strong)" }}>
               ※
             </span>
             <span>

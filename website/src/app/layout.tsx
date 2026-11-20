@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Archivo, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -11,6 +11,8 @@ const plex = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "600"], variabl
 const plexMono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "600"], variable: "--font-plex-mono", display: "swap" });
 
 const siteUrl = process.env.SITE_URL ?? `https://${company.domain}`;
+
+export const viewport: Viewport = { themeColor: "#0b1f3a" };
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

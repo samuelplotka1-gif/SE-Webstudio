@@ -312,7 +312,7 @@ export function DemoForm() {
                 </span>
               ))}
               {values.colors.length < MAX_COLORS && (
-                <button type="button" className="add-color" onClick={() => set("colors", [...values.colors, values.colors.length ? "#1f3a32" : "#e8492a"])}>
+                <button type="button" className="add-color" onClick={() => set("colors", [...values.colors, values.colors.length ? "#0b1f3a" : "#89cff0"])}>
                   + Farbe hinzufügen
                 </button>
               )}

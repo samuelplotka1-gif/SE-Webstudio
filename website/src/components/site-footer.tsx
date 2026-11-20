@@ -6,9 +6,8 @@ export function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="wrap">
-        <p className="footer-big" aria-hidden="true">
-          S<span>&amp;</span>E Webstudio
-        </p>
+        {/* eslint-disable-next-line @next/next/no-img-element -- SVG-Logo */}
+        <img className="footer-logo" src="/brand/logo-quer-chrom.svg" alt="S&E Webstudio – Webdesign, KI, SEO" width={938} height={270} loading="lazy" />
         <div className="footer-grid">
           <div className="footer-col">
             <h2>Kontakt</h2>

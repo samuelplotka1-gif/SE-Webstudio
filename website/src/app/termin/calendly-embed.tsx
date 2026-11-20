@@ -54,6 +54,6 @@ export function CalendlyEmbed({ url }: { url: string }) {
     );
   }
 
-  const embedUrl = `${url}${url.includes("?") ? "&" : "?"}hide_gdpr_banner=1&background_color=fbfaf6&text_color=141413&primary_color=e8492a`;
+  const embedUrl = `${url}${url.includes("?") ? "&" : "?"}hide_gdpr_banner=1&background_color=ffffff&text_color=0b1f3a&primary_color=2a73a0`;
   return <div className="calendly-inline-widget calendly-frame" data-url={embedUrl} />;
 }
