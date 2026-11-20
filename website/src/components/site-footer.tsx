@@ -48,6 +48,9 @@ export function SiteFooter() {
               <li>
                 <Link href="/datenschutz">Datenschutz</Link>
               </li>
+              <li>
+                <Link href="/agb">AGB</Link>
+              </li>
             </ul>
           </div>
         </div>

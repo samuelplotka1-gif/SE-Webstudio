@@ -244,7 +244,7 @@ export const services: Service[] = [
     ],
     steps: ["Abo wählen", "Umzug Ihrer Seite (falls nötig)", "Betreuung läuft"],
     faq: [
-      { q: "Wie lange läuft das Abo?", a: "[Laufzeit eintragen, z. B. 12 Monate Mindestlaufzeit, danach monatlich kündbar.]" },
+      { q: "Wie lange läuft das Abo?", a: "Die Mindestlaufzeit beträgt 12 Monate. Danach verlängert sich das Abo jeweils um einen Monat und ist mit einem Monat Frist zum Monatsende kündbar." },
       { q: "Betreuen Sie auch Seiten, die Sie nicht gebaut haben?", a: "Ja, nach einem kurzen Check. Manchmal empfehlen wir dabei einen Neuaufbau – aber nur, wenn er sich wirklich lohnt." },
     ],
     recurring: true,

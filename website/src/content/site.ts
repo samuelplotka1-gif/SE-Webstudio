@@ -25,7 +25,7 @@ export const phoneHref = `tel:${company.phone.replace(/[^\d+]/g, "")}`;
 
 export const priceNote = company.smallBusiness
   ? "Alle Preise sind Endpreise. Gemäß § 19 UStG wird keine Umsatzsteuer berechnet."
-  : "Alle Preise zzgl. 19 % Umsatzsteuer.";
+  : "Angebot nur für Unternehmen. Alle Preise zzgl. 19 % Umsatzsteuer.";
 
 /** Branchen für das Demo-Formular. Die CRM-Erweiterung wählt danach die Demo-Vorlage. */
 export const industries = [

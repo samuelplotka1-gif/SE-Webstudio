@@ -362,7 +362,7 @@ export function DemoForm() {
       {step === 2 && (
         <p className="legal-note">
           Mit dem Absenden erhalten Sie eine Mail zur Bestätigung. Wir verwenden Ihre Angaben nur für Ihre Demo und die Kontaktaufnahme dazu. Mehr in der{" "}
-          <Link href="/datenschutz">Datenschutzerklärung</Link>.
+          <Link href="/datenschutz">Datenschutzerklärung</Link>. Unser Angebot richtet sich an Unternehmen; es gelten unsere <Link href="/agb">AGB</Link>.
         </p>
       )}
     </form>

@@ -26,8 +26,20 @@ export default function Datenschutz() {
         höchstens <span className="placeholder">[7]</span> Tage gespeichert, um den sicheren Betrieb zu gewährleisten (Art. 6 Abs. 1 lit. f DSGVO).
       </p>
 
-      <h2>3. Schriften, Cookies, Tracking</h2>
-      <p>Alle Schriften werden von unserem eigenen Server geladen. Wir setzen keine Tracking- oder Marketing-Cookies und nutzen keine Analyse-Dienste.</p>
+      <h2 id="cookies">3. Cookies, Speicherung im Browser und Tracking</h2>
+      <p>
+        Diese Website setzt <strong>keine Cookies</strong> und speichert auch sonst nichts in Ihrem Browser (kein Local Storage, keine vergleichbaren Techniken). Wir nutzen keine Analyse-,
+        Tracking- oder Marketing-Dienste und binden keine Inhalte von Drittanbietern ein, die beim bloßen Aufruf Daten übertragen. Alle Schriften, Bilder und Skripte werden von unserem eigenen
+        Server geladen.
+      </p>
+      <p>
+        Weil wir nicht auf Ihr Endgerät zugreifen, ist eine Einwilligung nach § 25 Abs. 1 TDDDG nicht erforderlich – deshalb sehen Sie auch kein Cookie-Banner.
+      </p>
+      <p>
+        Einzige Ausnahme ist der Terminkalender von Calendly (siehe Abschnitt 5): Er wird erst geladen, wenn Sie auf der Seite „Gespräch buchen“ ausdrücklich auf „Kalender laden“ klicken. Erst
+        dann setzt Calendly eigene Cookies. Ihre Zustimmung speichern wir nicht – beim nächsten Besuch oder nach dem Neuladen der Seite ist der Kalender wieder deaktiviert. Sie widerrufen sie
+        also, indem Sie die Seite neu laden oder verlassen. Bereits gesetzte Calendly-Cookies können Sie in Ihren Browser-Einstellungen löschen.
+      </p>
 
       <h2>4. Demo-Anfrage (Formular mit Bestätigung)</h2>
       <p>
@@ -50,8 +62,9 @@ export default function Datenschutz() {
 
       <h2 id="calendly">5. Terminbuchung mit Calendly</h2>
       <p>
-        Für die Buchung von Gesprächen nutzen wir Calendly (Calendly LLC, USA). Der Kalender wird erst geladen, wenn Sie auf „Kalender laden“ klicken (Art. 6 Abs. 1 lit. a DSGVO). Dann werden
-        Daten an Calendly übertragen und Cookies gesetzt. Calendly ist unter dem EU-US Data Privacy Framework zertifiziert{" "}
+        Für die Buchung von Gesprächen nutzen wir Calendly (Calendly LLC, USA). Der Kalender wird erst geladen, wenn Sie auf „Kalender laden“ klicken (Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO
+        und § 25 Abs. 1 TDDDG). Dann werden Daten an Calendly übertragen und Cookies gesetzt. Alternativ können Sie Calendly über den Link „Direkt bei Calendly öffnen“ auf deren eigener Website
+        nutzen. Calendly ist unter dem EU-US Data Privacy Framework zertifiziert{" "}
         <span className="placeholder">[aktuellen Stand prüfen]</span>. Den gebuchten Termin übernehmen wir in unser Kundenverwaltungssystem.
       </p>
 

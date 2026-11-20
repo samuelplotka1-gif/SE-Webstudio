@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { nav } from "@/content/site";
 import { Logo } from "./logo";
 
@@ -13,8 +13,17 @@ export function SiteHeader() {
   const open = openOn === pathname;
   const setOpen = (fn: (o: boolean) => boolean) => setOpenOn(fn(open) ? pathname : null);
 
+  // Oben auf der Seite großes Logo (Unterzeile lesbar), beim Scrollen kompakte Leiste.
+  const [compact, setCompact] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setCompact(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="site-header">
+    <header className="site-header" data-compact={compact}>
       <div className="wrap site-header__inner">
         <Logo />
         <nav className="nav" aria-label="Leistungen">

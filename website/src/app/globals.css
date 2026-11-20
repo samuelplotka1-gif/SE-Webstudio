@@ -304,22 +304,51 @@ a {
 
 /* ---------- Header ---------- */
 
+/*
+ * Header: oben groß (Logo-Unterzeile „Webdesign · KI · SEO“ lesbar),
+ * beim Scrollen kompakt. Fest positioniert, damit beim Schrumpfen nichts springt –
+ * der Inhalt hält über --header-h dauerhaft Abstand.
+ */
+:root {
+  --header-h: 136px;
+  --header-h-compact: 72px;
+  --logo-h: 112px;
+  --logo-h-compact: 52px;
+}
+
+body {
+  padding-top: var(--header-h);
+}
+
+[id] {
+  scroll-margin-top: calc(var(--header-h-compact) + 16px);
+}
+
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 50;
   background: color-mix(in srgb, var(--ink) 96%, transparent);
   backdrop-filter: saturate(1.2) blur(6px);
   border-bottom: 1px solid var(--dark-line);
   color: var(--paper);
+  max-height: 100dvh;
+  overflow-y: auto;
 }
 
 .site-header__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
+  height: var(--header-h);
   gap: 24px;
+  transition: height 0.25s ease;
+}
+
+.site-header[data-compact="true"] .site-header__inner {
+  height: var(--header-h-compact);
 }
 
 .logo {
@@ -327,11 +356,17 @@ a {
   align-items: center;
   text-decoration: none;
   flex-shrink: 0;
+  min-width: 0;
 }
 
 .logo img {
-  height: 52px;
+  height: var(--logo-h);
   width: auto;
+  transition: height 0.25s ease;
+}
+
+.site-header[data-compact="true"] .logo img {
+  height: var(--logo-h-compact);
 }
 
 .nav {
@@ -381,7 +416,7 @@ a {
   display: none;
 }
 
-@media (max-width: 1020px) {
+@media (max-width: 1240px) {
   .nav,
   .header-cta {
     display: none;
@@ -414,15 +449,30 @@ a {
     color: var(--paper);
     border-color: var(--sky);
   }
-  .logo img {
-    height: 36px;
-  }
   .mobile-nav .btn {
     margin-top: 20px;
     width: 100%;
     font-family: var(--font-body);
     font-size: 16px;
     font-stretch: 100%;
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --header-h: 96px;
+    --header-h-compact: 64px;
+    --logo-h: 72px;
+    --logo-h-compact: 44px;
+  }
+  .site-header__inner {
+    gap: 12px;
+  }
+  /* Auf sehr schmalen Handys darf das Logo nicht mit dem Menü-Knopf kollidieren */
+  .logo img {
+    max-width: calc(100vw - 2 * var(--gutter) - 100px);
+    object-fit: contain;
+    object-position: left center;
   }
 }
 
@@ -1239,7 +1289,7 @@ a {
   display: grid;
   gap: 24px;
   position: sticky;
-  top: 100px;
+  top: calc(var(--header-h-compact) + 28px);
 }
 
 @media (max-width: 900px) {
@@ -1622,6 +1672,17 @@ a {
 .prose h2 {
   font-size: 22px;
   margin: 40px 0 8px;
+}
+
+.prose ol {
+  padding-left: 1.4em;
+  display: grid;
+  gap: 8px;
+}
+
+.prose a {
+  text-decoration-color: var(--signal-strong);
+  text-underline-offset: 3px;
 }
 
 .prose p,
