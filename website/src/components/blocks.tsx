@@ -116,7 +116,32 @@ export function Faq({ items }: { items: { q: string; a: string }[] }) {
   );
 }
 
-export function FinalCta({ title = "Wie möchten Sie weitermachen?" }: { title?: string }) {
+export function FinalCta({ title = "Wie möchten Sie weitermachen?", demo = true }: { title?: string; demo?: boolean }) {
+  // Ohne Demo-Angebot (KI-Agenten, Automatisierung, CRM-Tools): nur der Weg zum Gespräch
+  if (!demo) {
+    return (
+      <section className="section" aria-labelledby="final-title">
+        <div className="wrap">
+          <span className="mono-label">Nächster Schritt</span>
+          <h2 id="final-title" className="display display--l" style={{ margin: "20px 0 48px" }}>
+            {title}
+          </h2>
+          <div className="final final--single">
+            <div className="final__path">
+              <span className="mono-label mono-label--plain">30 Minuten · Telefon oder Video</span>
+              <h3 className="display display--m">Lassen Sie uns sprechen.</h3>
+              <p>Erzählen Sie uns, wo es hakt. Wir sagen Ihnen ehrlich, was sich lohnt, was es ungefähr kostet – und was nicht nötig ist.</p>
+              <div>
+                <Link href="/termin" className="btn btn--primary">
+                  Gespräch buchen <span className="arrow">→</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
   return (
     <section className="section" aria-labelledby="final-title">
       <div className="wrap">

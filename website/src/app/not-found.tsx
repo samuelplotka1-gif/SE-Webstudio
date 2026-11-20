@@ -11,8 +11,8 @@ export default function NotFound() {
         <Link href="/" className="btn btn--primary">
           Zur Startseite
         </Link>
-        <Link href="/demo" className="btn btn--ghost">
-          Kostenlose Demo anfordern
+        <Link href="/termin" className="btn btn--ghost">
+          Gespräch buchen
         </Link>
       </div>
     </div>

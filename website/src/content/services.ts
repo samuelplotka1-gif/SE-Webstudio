@@ -26,11 +26,14 @@ export type Service = {
   steps: string[];
   faq: { q: string; a: string }[];
   recurring?: boolean;
+  /** Kostenlose Demo gibt es nur für Websites – nur diese Seiten zeigen den Demo-Button. */
+  demo?: boolean;
 };
 
 export const services: Service[] = [
   {
     slug: "webseiten",
+    demo: true,
     index: "01",
     name: "Webseiten",
     short: "Schnell, klar, auf Anfragen ausgelegt.",
@@ -245,6 +248,7 @@ export const services: Service[] = [
       { q: "Betreuen Sie auch Seiten, die Sie nicht gebaut haben?", a: "Ja, nach einem kurzen Check. Manchmal empfehlen wir dabei einen Neuaufbau – aber nur, wenn er sich wirklich lohnt." },
     ],
     recurring: true,
+    demo: true,
   },
 ];
 

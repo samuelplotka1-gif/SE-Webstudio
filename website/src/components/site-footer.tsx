@@ -37,7 +37,7 @@ export function SiteFooter() {
             <h2>Nächster Schritt</h2>
             <ul>
               <li>
-                <Link href="/demo">Kostenlose Demo anfordern</Link>
+                <Link href="/demo">Kostenlose Website-Demo</Link>
               </li>
               <li>
                 <Link href="/termin">Gespräch buchen</Link>

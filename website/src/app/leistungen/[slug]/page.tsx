@@ -42,12 +42,20 @@ export default async function ServicePage({ params }: PageProps<"/leistungen/[sl
           {s.recurring ? <span>Monatlich · planbar · ein Ansprechpartner</span> : <span>Festpreis-Angebot nach dem Gespräch</span>}
         </div>
         <div className="cta-row">
-          <Link href="/demo" className="btn btn--primary">
-            Kostenlose Demo anfordern <span className="arrow">→</span>
-          </Link>
-          <Link href="/termin" className="btn btn--ghost">
-            Gespräch buchen
-          </Link>
+          {s.demo ? (
+            <>
+              <Link href="/demo" className="btn btn--primary">
+                Kostenlose Demo anfordern <span className="arrow">→</span>
+              </Link>
+              <Link href="/termin" className="btn btn--ghost">
+                Gespräch buchen
+              </Link>
+            </>
+          ) : (
+            <Link href="/termin" className="btn btn--primary">
+              Gespräch buchen <span className="arrow">→</span>
+            </Link>
+          )}
         </div>
       </section>
 
@@ -110,7 +118,7 @@ export default async function ServicePage({ params }: PageProps<"/leistungen/[sl
         </section>
       ) : null}
 
-      <FinalCta title={`${s.name} für Ihren Betrieb?`} />
+      <FinalCta title={`${s.name} für Ihren Betrieb?`} demo={s.demo === true} />
 
       <section className="section" aria-label="Weitere Leistungen">
         <div className="wrap">

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { CalendlyEmbed } from "./calendly-embed";
 
 export const metadata: Metadata = {
@@ -26,9 +25,6 @@ export default function TerminPage() {
             <span>03</span>Wir rufen pünktlich an
           </li>
         </ol>
-        <p style={{ margin: 0, fontSize: 15, color: "var(--ink-2)" }}>
-          Lieber erst etwas sehen? <Link href="/demo" className="link-arrow">Kostenlose Demo anfordern →</Link>
-        </p>
       </aside>
       <CalendlyEmbed url={url} />
     </div>

@@ -1054,6 +1054,14 @@ a {
   border-bottom: 1.5px solid var(--ink);
 }
 
+.final--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.final--single .final__path p {
+  max-width: 40em;
+}
+
 .final__path {
   padding: clamp(32px, 5vw, 64px) clamp(0px, 3vw, 40px) clamp(32px, 5vw, 64px) 0;
   display: grid;
@@ -1086,7 +1094,8 @@ a {
 /* ---------- Leistungsseite ---------- */
 
 .svc-hero {
-  padding: clamp(40px, 6vw, 88px) 0 clamp(48px, 7vw, 96px);
+  padding-top: clamp(40px, 6vw, 88px);
+  padding-bottom: clamp(48px, 7vw, 96px);
   display: grid;
   gap: 28px;
 }
@@ -1215,7 +1224,8 @@ a {
   display: grid;
   grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
   gap: clamp(32px, 6vw, 96px);
-  padding: clamp(40px, 6vw, 88px) 0 clamp(64px, 8vw, 120px);
+  padding-top: clamp(40px, 6vw, 88px);
+  padding-bottom: clamp(64px, 8vw, 120px);
   align-items: start;
 }
 
@@ -1601,7 +1611,8 @@ a {
 
 .prose {
   max-width: 46em;
-  padding: clamp(40px, 6vw, 88px) 0 clamp(64px, 8vw, 120px);
+  padding-top: clamp(40px, 6vw, 88px);
+  padding-bottom: clamp(64px, 8vw, 120px);
 }
 
 .prose h1 {
